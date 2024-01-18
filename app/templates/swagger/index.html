@@ -1,0 +1,65 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Swagger UI</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='swagger/swagger-ui.css') }}"/>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='swagger/index.css') }}"/>
+    <link rel="icon" type="image/png"
+          href="{{ url_for('static', filename='swagger/favicon-32x32.png') }}"
+          sizes="32x32"/>
+    <link rel="icon" type="image/png"
+          href="{{ url_for('static', filename='swagger/favicon-16x16.png') }}"
+          sizes="16x16"/>
+</head>
+
+<body>
+
+<div id="swagger-ui"></div>
+<script src="{{ url_for('static', filename='swagger/swagger-ui-bundle.js') }}"
+        charset="UTF-8"></script>
+<script src="{{ url_for('static', filename='swagger/swagger-ui-standalone-preset.js') }}"
+        charset="UTF-8"></script>
+<script>
+    window.onload = function () {
+        //<editor-fold desc="Changeable Configuration Block">
+
+        var apiKey = '{{ api_key }}';
+
+        // the following lines will be replaced by docker/configurator, when it runs in a docker-container
+        window.ui = SwaggerUIBundle({
+            url: "http://127.0.0.1:4130/docs/api/swagger.json",
+            dom_id: '#swagger-ui',
+            deepLinking: true,
+            persistAuthorization: true,
+            presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIStandalonePreset
+            ],
+            plugins: [
+                SwaggerUIBundle.plugins.DownloadUrl
+            ],
+            responseInterceptor: function (response) {
+                if (response.body.access_token) {
+                    ui.preauthorizeApiKey("jwt", response.body.access_token);
+                    sessionStorage.setItem('access_token', response.body.access_token);
+                }
+            },
+            layout: "StandaloneLayout",
+            onComplete: function () {
+                // Default Bearer auth
+                var accessToken = sessionStorage.getItem('access_token');
+                if (accessToken) {
+                    ui.preauthorizeApiKey("jwt", accessToken);
+                }
+            }
+        });
+
+        //</editor-fold>
+    };
+</script>
+</body>
+</html>
