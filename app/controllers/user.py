@@ -111,10 +111,8 @@ class CRUDUser(CRUDBase):
             self.class_model.status.is_(True),
             self.class_model.deleted_at.is_(None))
 
-        if basic == os.environ.get("ADMIN_BASIC"):
-            query = query.filter(self.class_model.group_id.not_in([5]))
-        elif basic != os.environ.get("CLIENT_BASIC"):
-            raise UnauthorizedError("Invalid Basic Negado")
+        if basic != os.environ.get("ADMIN_BASIC"):
+            raise UnauthorizedError("Invalid Basic Negado Header")
 
         if "@" in username:
             query = query.filter(self.class_model.email == username)

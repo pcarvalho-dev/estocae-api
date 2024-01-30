@@ -12,3 +12,4 @@ from .main_company_address import MainCompanyAddress
 from .main_company import MainCompany
 from .main_settings import MainSettings
 from .main_company import MainCompany
+from .product import Product

@@ -5,12 +5,12 @@ from app.schemas.base import BaseSchema
 
 class UserSchema(BaseSchema):
     hash_id = fields.Str(dump_only=True)
-    email = fields.Str(required=True)
-    password = fields.Str(required=True, load_only=True)
     name = fields.Str(required=True)
-    taxpayer = fields.Str()
-    genre = fields.Str()
+    email = fields.Str(required=True)
     cellphone = fields.Str()
+    document = fields.Str()
+    password = fields.Str(required=True, load_only=True)
+    genre = fields.Str()
     birth_date = fields.Date()
     status = fields.Boolean()
 

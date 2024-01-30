@@ -12,3 +12,4 @@ from .community import CommunitySchema
 from .main_company_address import MainCompanyAddressSchema
 from .main_settings import MainSettingsSchema
 from .main_company import MainCompanySchema
+from .product import ProductSchema

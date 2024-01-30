@@ -16,15 +16,15 @@ Credential levels
 class User(db.Model, BaseModel):
     __tablename__ = "user"
 
+    token_update = db.Column(db.String(36))
+    name = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     email_verified = db.Column(db.Boolean, default=0)
-    token_update = db.Column(db.String(36))
-    password = db.Column(db.String(255), nullable=False)
-    name = db.Column(db.String(255), nullable=False)
-    image_key = db.Column(db.String(255))
-    taxpayer = db.Column(db.String(255))
-    genre = db.Column(db.String(255))
     cellphone = db.Column(db.String(255))
+    document = db.Column(db.String(255))
+    password = db.Column(db.String(255), nullable=False)
+    image_key = db.Column(db.String(255))
+    genre = db.Column(db.String(255))
     birth_date = db.Column(db.Date)
     status = db.Column(db.Boolean(), nullable=False, default=1)
 
