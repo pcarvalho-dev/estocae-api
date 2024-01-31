@@ -1,5 +1,6 @@
 from flask_jwt_extended import create_access_token, create_refresh_token
 
+from app.schemas import UserSchema
 from config import Config
 
 
@@ -31,6 +32,7 @@ def generate_user_jwt(user):
         "token_type": "Bearer",
         "expires_in": Config.JWT_EXPIRES,
         "access_token": access_token,
-        "refresh_token": refresh_token
+        "refresh_token": refresh_token,
+        "user": UserSchema().dump(user)
     }
     return data

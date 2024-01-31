@@ -23,7 +23,7 @@ def token():
           application/json:
             schema: TokenSchema
             example:
-              username: administrador@mailinator.com
+              username: admin@mailinator.com
               password: "123456"
               grant_type: password
       responses:
