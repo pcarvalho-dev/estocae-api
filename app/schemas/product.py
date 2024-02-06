@@ -9,6 +9,7 @@ class ProductSchema(BaseSchema):
     sales_link = fields.Str()
     price = fields.Float(required=True)
     status = fields.Str()
+    comission_percent = fields.Int()
 
     class Meta:
         unknown = EXCLUDE

@@ -12,7 +12,7 @@ class UserSchema(BaseSchema):
     password = fields.Str(required=True, load_only=True)
     genre = fields.Str()
     birth_date = fields.Date()
-    individual_percentage = fields.Int()
+    comission_percent = fields.Int()
     status = fields.Boolean()
 
     group_id = fields.Int(required=True)

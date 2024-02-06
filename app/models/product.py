@@ -1,6 +1,8 @@
-from app import db
-from app.models.base import BaseModel
+from flask_jwt_extended import get_jwt_identity, verify_jwt_in_request
 from sqlalchemy.dialects.mysql import LONGTEXT
+
+from app import db, models
+from app.models.base import BaseModel
 
 
 class Product(db.Model, BaseModel):
@@ -11,6 +13,16 @@ class Product(db.Model, BaseModel):
     sales_link = db.Column(db.String(255))
     price = db.Column(db.Float, nullable=False)
     status = db.Column(db.String(255), default="active")
+
+    def _get_comission_percent(self):
+        try:
+            verify_jwt_in_request()
+            user_jwt = get_jwt_identity()
+            user = models.User.get_by_id(user_jwt['user_id'])
+            return user.comission_percent
+        except:
+            return 10
+    comission_percent = property(_get_comission_percent)
 
     def __init__(self, **kwargs):
         allowed_args = self.__mapper__.class_manager  # returns a dict

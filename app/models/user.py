@@ -26,7 +26,7 @@ class User(db.Model, BaseModel):
     image_key = db.Column(db.String(255))
     genre = db.Column(db.String(255))
     birth_date = db.Column(db.Date)
-    individual_percentage = db.Column(db.Integer)
+    comission_percent = db.Column(db.Integer)
     status = db.Column(db.Boolean(), nullable=False, default=1)
 
     # foreign key
