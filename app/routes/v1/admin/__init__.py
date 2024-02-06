@@ -1,5 +1,5 @@
-from app.routes.v1.admin import city, country, group, state, user, community, \
-    main, terms_and_conditions
+from app.routes.v1.admin import (city, community, country, group, main,
+                                 product, state, terms_and_conditions, user)
 from app.routes.v1.admin.routes import admin_bp
 
 
@@ -12,6 +12,7 @@ def init_app(v1_bp):
     main.init_app(admin_bp)
     country.init_app(admin_bp)
     state.init_app(admin_bp)
+    product.init_app(admin_bp)
     city.init_app(admin_bp)
     group.init_app(admin_bp)
     user.init_app(admin_bp)
