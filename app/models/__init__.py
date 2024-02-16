@@ -13,3 +13,5 @@ from .main_company import MainCompany
 from .main_settings import MainSettings
 from .main_company import MainCompany
 from .product import Product
+from .plan import Plan
+from .user_plan import UserPlan

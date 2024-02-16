@@ -13,3 +13,5 @@ from .main_company_address import MainCompanyAddressSchema
 from .main_settings import MainSettingsSchema
 from .main_company import MainCompanySchema
 from .product import ProductSchema
+from .plan import PlanSchema
+from .user_plan import UserPlanSchema
