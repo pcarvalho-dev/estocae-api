@@ -3,17 +3,13 @@ from marshmallow import EXCLUDE, fields
 from app.schemas.base import BaseSchema
 
 
-class ProductSchema(BaseSchema):
+class OfferSchema(BaseSchema):
     name = fields.Str(required=True)
-    description = fields.Str()
-    sales_link = fields.Str()
+    url = fields.Str()
     price = fields.Float(required=True)
-    comission_percent = fields.Int()
-    warranty_period = fields.Int()
-    weight = fields.Float()
-    packing_type = fields.Str()
+    is_custom_commission = fields.Bool()
+    quantity = fields.Int()
     status = fields.Str()
-    user_id = fields.Int()
 
     class Meta:
         unknown = EXCLUDE

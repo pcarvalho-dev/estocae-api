@@ -12,10 +12,11 @@ class Product(db.Model, BaseModel):
     description = db.Column(LONGTEXT(collation="utf8mb4_bin"))
     sales_link = db.Column(db.String(255))
     price = db.Column(db.Float, nullable=False)
-    warranty_period = db.Column(db.Integer)
+    warranty_period = db.Column(db.Integer) 
     weight = db.Column(db.Float)
     packing_type = db.Column(db.String(255))
     status = db.Column(db.String(255), default="active")
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def _get_comission_percent(self):
         try:

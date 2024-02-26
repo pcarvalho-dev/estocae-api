@@ -15,3 +15,5 @@ from .main_company import MainCompanySchema
 from .product import ProductSchema
 from .plan import PlanSchema
 from .user_plan import UserPlanSchema
+from .offer import OfferSchema
+from .coupon import CouponSchema
