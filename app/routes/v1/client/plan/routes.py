@@ -56,3 +56,27 @@ def item_subscribe(item_id):
         return default_return(e.status_code, e.message, {"Error": str(e)})
     except Exception as e:
         raise e
+
+
+@client_plan_bp.route('/<item_id>/cancel', methods=['POST'])
+@jwt_required()
+def item_cancel(item_id):
+    try:
+        user_id = get_jwt_identity()['user_id']
+        if request.method == 'POST':
+            item = crud_plan.get(item_id, True)
+            if not item:
+                raise GenerateError("Plan not found", 404)
+            user_plan = models.UserPlan.query.filter(
+                user_id=user_id,
+                plan_id=item_id
+            ).first()
+            if user_plan:
+                user_plan.status = 'canceled'
+                user_plan.update()
+                user_plan.delete()
+            return default_return(204, 2, {})
+    except treated_errors as e:
+        return default_return(e.status_code, e.message, {"Error": str(e)})
+    except Exception as e:
+        raise e
