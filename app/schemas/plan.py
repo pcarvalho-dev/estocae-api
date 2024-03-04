@@ -9,7 +9,7 @@ class PlanSchema(BaseSchema):
     description = fields.Str()
     status = fields.Str()
     comission_percent = fields.Float()
-    group = fields.Nested('Group', dump_only=True)
+    group = fields.Nested('GroupSchema', dump_only=True)
 
     class Meta:
         unknown = EXCLUDE

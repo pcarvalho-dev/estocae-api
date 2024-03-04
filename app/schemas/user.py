@@ -22,6 +22,9 @@ class UserSchema(BaseSchema):
     address = fields.Nested('UserAddressSchema', many=False,
                             exclude=('created_at', 'updated_at'))
 
+    plan = fields.Nested('PlanSchema', many=False,
+                         exclude=('created_at', 'updated_at'))
+
     class Meta:
         unknown = EXCLUDE
         exclude = ('created_at', 'updated_at')

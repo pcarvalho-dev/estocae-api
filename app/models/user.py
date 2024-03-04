@@ -1,4 +1,4 @@
-from app import db
+from app import db, models
 
 from app.models.base import BaseModel
 
@@ -37,7 +37,18 @@ class User(db.Model, BaseModel):
 
     # address
     address = db.relationship('UserAddress', backref='user', lazy=True,
-                                uselist=False)
+                              uselist=False)
+
+    def _get_plan(self):
+        return models.Plan.query.join(
+            models.UserPlan,
+            models.UserPlan.plan_id == models.Plan.id,
+        ).filter(
+            models.UserPlan.user_id == self.id,
+            models.UserPlan.status == 'active'
+        ).first()
+
+    plan = property(_get_plan)
 
     def __init__(self, **kwargs):
         allowed_args = self.__mapper__.class_manager  # returns a dict
