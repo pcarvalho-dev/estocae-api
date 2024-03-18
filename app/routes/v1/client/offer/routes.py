@@ -3,7 +3,6 @@ from flask_jwt_extended import jwt_required
 
 from app.controllers import crud_offer
 from app.services.errors.default_errors import treated_errors
-from app.services.requests.intercept import intercept_admin_user
 from app.services.requests.requests import default_return
 
 offer_bp = Blueprint("offer", __name__, url_prefix='/offers')
@@ -11,10 +10,13 @@ offer_bp = Blueprint("offer", __name__, url_prefix='/offers')
 
 @offer_bp.route('', methods=['GET', 'POST'])
 @jwt_required()
-@intercept_admin_user
 def item_multi_routes():
     try:
+        extra_filters = []
+        product_id = request.args.get('product_id')
         if request.method == 'GET':
+            if product_id:
+                extra_filters.append(('product_id', 'eq', product_id))
             items, items_paginate = crud_offer.get_multi(True)
             return default_return(200, 2, items, items_paginate)
 
@@ -29,7 +31,6 @@ def item_multi_routes():
 
 @offer_bp.route('/<item_id>', methods=['GET', 'PUT', 'DELETE'])
 @jwt_required()
-@intercept_admin_user
 def item_routes(item_id):
     try:
         if request.method == 'GET':

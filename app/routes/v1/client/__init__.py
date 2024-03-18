@@ -1,4 +1,4 @@
-from . import product, recover, terms_and_conditions, plan
+from . import product, recover, terms_and_conditions, plan, offer
 from .routes import client_bp
 
 
@@ -7,4 +7,5 @@ def init_app(v1_bp):
     terms_and_conditions.init_app(client_bp)
     product.init_app(client_bp)
     plan.init_app(client_bp)
+    offer.init_app(client_bp)
     v1_bp.register_blueprint(client_bp)

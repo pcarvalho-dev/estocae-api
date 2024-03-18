@@ -11,6 +11,7 @@ class Offer(db.Model, BaseModel):
     is_custom_commission = db.Column(db.Boolean, default=False)
     quantity = db.Column(db.Integer)
     status = db.Column(db.String(255), default="active")
+    product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
 
     coupon = db.relationship("Coupon", back_populates="offer")
 
