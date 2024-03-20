@@ -14,6 +14,12 @@ class ProductSchema(BaseSchema):
     packing_type = fields.Str()
     status = fields.Str()
     user_id = fields.Int()
+    # Affiliation
+    is_affiliation = fields.Bool()
+    is_visible_in_store = fields.Bool()
+    affiliation_name = fields.Str()
+    cookie_time = fields.Int()
+    affiliation_type = fields.Str()
 
     class Meta:
         unknown = EXCLUDE

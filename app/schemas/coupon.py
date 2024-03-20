@@ -10,6 +10,7 @@ class CouponSchema(BaseSchema):
     status = fields.Str()
 
     offer_id = fields.Int()
+    product_id = fields.Int()
     offer = fields.Nested('OfferSchema', exclude=('created_at', 'updated_at'))
 
     class Meta:

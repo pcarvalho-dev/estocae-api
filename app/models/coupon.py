@@ -11,6 +11,7 @@ class Coupon(db.Model, BaseModel):
     status = db.Column(db.String(255), default="active")
 
     offer_id = db.Column(db.Integer, db.ForeignKey("offer.id"))
+    product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
     offer = db.relationship("Offer", back_populates="coupon")
 
     def __init__(self, **kwargs):
