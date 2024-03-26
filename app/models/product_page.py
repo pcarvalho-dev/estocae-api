@@ -2,18 +2,12 @@ from app import db
 from app.models.base import BaseModel
 
 
-class Offer(db.Model, BaseModel):
-    __tablename__ = "offer"
+class ProductPage(db.Model, BaseModel):
+    __tablename__ = "product_page"
 
     name = db.Column(db.String(255), nullable=False)
-    url = db.Column(db.String(255))
-    price = db.Column(db.Float, nullable=False)
-    is_custom_commission = db.Column(db.Boolean, default=False)
-    quantity = db.Column(db.Integer)
-    status = db.Column(db.String(255), default="active")
+    link = db.Column(db.String(255), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey("product.id"))
-
-    coupon = db.relationship("Coupon", back_populates="offer")
 
     def __init__(self, **kwargs):
         allowed_args = self.__mapper__.class_manager  # returns a dict

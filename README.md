@@ -56,51 +56,6 @@ bash db-merge.sh
 bash db-dump
 ```
 
-### autenticação no swagger
-
-> cole o link no seu navergador após a inicialização do docker-compose up --build:
-``` shell script
-http://127.0.0.1:4000/docs#/ 
-```
-
-> click no botão Authorize
-
-![Captura de tela de 2022-08-03 10-31-30](https://user-images.githubusercontent.com/50378596/182626006-7c4064d6-5446-44c3-ae1a-7597ddf9eb08.png)
-<br>
-
->coloque a key informada a baixo no "api_key (apiKey)":
-
-b2ZlcnRhcGxheXVzZXI6b2ZlcnRhcGxheXBhc3N3b3Jk
-
-
-![Captura de tela de 2022-08-03 10-31-45](https://user-images.githubusercontent.com/50378596/182636158-bf5ea867-5b04-4f35-a2c4-3b7e1e7d869d.png)
-<br>
-
->click em authorize
-
-![Captura de tela de 2022-08-03 11-41-32](https://user-images.githubusercontent.com/50378596/182647536-efc0fd73-3300-4b67-ae16-18f2c88c40f7.png)
-<br>
-
->Entre na rota Token
-
-![Captura de tela de 2022-08-03 11-40-43](https://user-images.githubusercontent.com/50378596/182647841-db1a977d-41a0-4a40-86fe-a008161f52c2.png)
-<br>
-
->click em Try it out
-
-![Captura de tela de 2022-08-03 11-42-01](https://user-images.githubusercontent.com/50378596/182648173-a65d7154-4695-4741-b632-e0dcfcf46d2a.png)
-<br>
-
->click em execute
-
-![Captura de tela de 2022-08-03 11-42-16](https://user-images.githubusercontent.com/50378596/182648375-147dd514-e345-4caa-949e-ea0c38b80e32.png)
-<br>
-
->copie o jwt sem as "aspas" gerado pelo rota token e cole no jwt  (http, Bearer). Pronto já pode visualizar as rotas
-
-![Captura de tela de 2022-08-03 11-46-00](https://user-images.githubusercontent.com/50378596/182648489-11eca162-3147-438a-95de-69dbcbe47ee5.png)
-<br>
-
 
 ### Relatorio de tests
 

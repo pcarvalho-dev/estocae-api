@@ -1,4 +1,4 @@
-from app.routes.v1.client.plan.routes import client_plan_bp
+from app.routes.v1.client.product.coupon.routes import coupon_bp
 
 
 def init_app(client_bp):
@@ -7,4 +7,4 @@ def init_app(client_bp):
 
     :param client_bp: The blueprint that the admin blueprint is registered to
     """
-    client_bp.register_blueprint(client_plan_bp)
+    client_bp.register_blueprint(coupon_bp)

@@ -1,3 +1,4 @@
+from .coupon import Coupon
 from .city import City
 from .country import Country
 from .group import Group
@@ -13,7 +14,8 @@ from .main_company import MainCompany
 from .main_settings import MainSettings
 from .main_company import MainCompany
 from .product import Product
+from .product_affiliate import ProductAffiliate
+from .product_page import ProductPage
 from .plan import Plan
 from .user_plan import UserPlan
 from .offer import Offer
-from .coupon import Coupon

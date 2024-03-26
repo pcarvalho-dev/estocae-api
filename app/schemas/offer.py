@@ -10,6 +10,7 @@ class OfferSchema(BaseSchema):
     is_custom_commission = fields.Bool()
     quantity = fields.Int()
     status = fields.Str()
+    product_id = fields.Int()
 
     class Meta:
         unknown = EXCLUDE

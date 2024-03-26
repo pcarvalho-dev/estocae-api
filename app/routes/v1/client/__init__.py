@@ -1,4 +1,4 @@
-from . import product, recover, terms_and_conditions, plan
+from . import plan, product, recover, terms_and_conditions
 from .routes import client_bp
 
 
