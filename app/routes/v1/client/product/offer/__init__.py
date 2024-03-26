@@ -1,4 +1,4 @@
-from app.routes.v1.client.offer.routes import offer_bp
+from app.routes.v1.client.product.offer.routes import offer_bp
 
 
 def init_app(client_bp):

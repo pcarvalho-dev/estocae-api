@@ -1,4 +1,4 @@
-from app.routes.v1.client.coupon.routes import coupon_bp
+from app.routes.v1.client.product.coupon.routes import coupon_bp
 
 
 def init_app(client_bp):
