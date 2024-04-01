@@ -11,9 +11,12 @@ client_product_bp = Blueprint(
     "client_product", __name__, url_prefix='/products')
 
 
-@client_product_bp.route('', methods=['GET'])
+@client_product_bp.route('', methods=['GET', 'POST'])
 def item_multi_routes():
     try:
+        if request.method == 'POST':
+            item = crud_product.post(schema=True)
+            return default_return(201, 1, item)
         if request.method == 'GET':
             items, items_paginate = crud_product.get_multi(True)
             return default_return(200, 2, items, items_paginate)
