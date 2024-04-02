@@ -12,10 +12,14 @@ client_product_bp = Blueprint(
 
 
 @client_product_bp.route('', methods=['GET', 'POST'])
+@jwt_required()
 def item_multi_routes():
     try:
+        user_id = get_jwt_identity()['user_id']
         if request.method == 'POST':
-            item = crud_product.post(schema=True)
+            extra_filters = [('user_id', 'eq', user_id)]
+            item = crud_product.post(schema=True,
+                                     extra_fields=extra_filters)
             return default_return(201, 1, item)
         if request.method == 'GET':
             items, items_paginate = crud_product.get_multi(True)
