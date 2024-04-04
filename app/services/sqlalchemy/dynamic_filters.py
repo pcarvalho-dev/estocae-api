@@ -35,7 +35,7 @@ def dynamic_filters(class_model, query, extra_filters):
             raise Exception('Invalid filter column: %s' % key)
 
         if op == 'in':
-            if isinstance(value, list):
+            if type(value) in (tuple, list):
                 filt = column.in_(value)
             else:
                 filt = column.in_(value.split(','))

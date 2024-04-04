@@ -6,6 +6,7 @@ from app.schemas.base import BaseSchema
 class ProductAffiliateSchema(BaseSchema):
     user_id = fields.Int()
     product_id = fields.Int()
+    status = fields.Str()
 
     class Meta:
         unknown = EXCLUDE

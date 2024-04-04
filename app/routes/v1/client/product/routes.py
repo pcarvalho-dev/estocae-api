@@ -1,9 +1,10 @@
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
 
-from app.controllers import crud_product, crud_product_page
+from app import models
+from app.controllers import crud_product, crud_product_affiliate
 from app.services.errors.default_errors import treated_errors
-from app.services.errors.exceptions import NotFoundError
+from app.services.errors.exceptions import GenerateError, NotFoundError
 from app.services.requests.requests import default_return
 from flask_jwt_extended import get_jwt_identity
 
@@ -70,13 +71,27 @@ def item_routes(item_id):
 def item_affiliate(item_id):
     try:
         user_id = get_jwt_identity()['user_id']
-        if request.method == 'GET':
+        if request.method == 'POST':
             item = crud_product.get(item_id)
             if not item:
                 raise NotFoundError("Item not found", 404)
-            item.user_id = user_id
-            item.update()
-            return default_return(200, 2, item)
+            is_affiliate = models.ProductAffiliate.query.filter(
+                models.ProductAffiliate.user_id == user_id,
+                models.ProductAffiliate.product_id == item_id,
+                models.ProductAffiliate.status.in_(['pending', 'approved'])
+            ).first()
+            if is_affiliate:
+                raise GenerateError(
+                    409,
+                    "Você já tem uma solicitação de afiliação em andamento!"
+                )
+            crud_product_affiliate.post(
+                dict_body={
+                    "user_id": user_id,
+                    "product_id": item_id
+                }
+            )
+            return default_return(200, 2, "Solicitação de afiliação enviada!")
     except treated_errors as e:
         return default_return(e.status_code, e.message, {"Error": str(e)})
     except Exception as e:
