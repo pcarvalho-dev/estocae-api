@@ -15,6 +15,7 @@ from .main_company import MainCompanySchema
 from .product import ProductSchema
 from .product_affiliate import ProductAffiliateSchema
 from .product_page import ProductPageSchema
+from .product_checkout import ProductCheckoutSchema
 from .plan import PlanSchema
 from .user_plan import UserPlanSchema
 from .offer import OfferSchema

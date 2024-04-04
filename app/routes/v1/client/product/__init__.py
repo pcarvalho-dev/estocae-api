@@ -1,5 +1,6 @@
 from app.routes.v1.client.product.routes import client_product_bp
-from . import offer, coupon
+
+from . import checkout, coupon, offer, page
 
 
 def init_app(admin_bp):
@@ -10,4 +11,6 @@ def init_app(admin_bp):
     """
     coupon.init_app(client_product_bp)
     offer.init_app(client_product_bp)
+    checkout.init_app(client_product_bp)
+    page.init_app(client_product_bp)
     admin_bp.register_blueprint(client_product_bp)

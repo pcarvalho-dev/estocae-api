@@ -32,7 +32,7 @@ class UserValidators:
         if taxpayer is not None:
             if taxpayer != "":
 
-                extra_filters = [("taxpayer", "eq", taxpayer)]
+                extra_filters = [("document", "eq", taxpayer)]
                 item = self.class_model.get_first(extra_filters=extra_filters)
 
                 if item:
@@ -60,11 +60,11 @@ class UserValidators:
     def validate_doc_user(self):
         if self.type_request == 'PUT':
             item = self.class_model.get(item_id=self.item_id)
-            if item.taxpayer != self.dict_body['taxpayer']:
-                self.__query_validate_doc_value(self.dict_body['taxpayer'])
+            if item.taxpayer != self.dict_body['document']:
+                self.__query_validate_doc_value(self.dict_body['document'])
 
         elif self.type_request == 'POST':
-            self.__query_validate_doc_value(self.dict_body['taxpayer'])
+            self.__query_validate_doc_value(self.dict_body['document'])
 
     def validate_cellphone(self):
         if self.type_request == 'PUT':
@@ -82,7 +82,8 @@ class UserValidators:
         self.validate_doc_user()
         self.validate_email()
         self.validate_cellphone()
-        self.validate_city()
+        if "address" in self.dict_body:
+            self.validate_city()
 
     def verify_user_admin(self):
         self.validate_email()

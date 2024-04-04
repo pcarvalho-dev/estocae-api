@@ -16,6 +16,7 @@ from .main_company import MainCompany
 from .product import Product
 from .product_affiliate import ProductAffiliate
 from .product_page import ProductPage
+from .product_checkout import ProductCheckout
 from .plan import Plan
 from .user_plan import UserPlan
 from .offer import Offer

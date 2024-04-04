@@ -17,12 +17,16 @@ def item_multi_routes():
     try:
         user_id = get_jwt_identity()['user_id']
         if request.method == 'POST':
-            extra_filters = [('user_id', 'eq', user_id)]
+            extra_fields = [('user_id', user_id)]
             item = crud_product.post(schema=True,
-                                     extra_fields=extra_filters)
+                                     extra_fields=extra_fields)
             return default_return(201, 1, item)
         if request.method == 'GET':
-            items, items_paginate = crud_product.get_multi(True)
+            extra_filters = [('status', 'eq', 'active')]
+            items, items_paginate = crud_product.get_multi(
+                True,
+                extra_filters=extra_filters
+            )
             return default_return(200, 2, items, items_paginate)
     except treated_errors as e:
         return default_return(e.status_code, e.message, {"Error": str(e)})
@@ -73,28 +77,6 @@ def item_affiliate(item_id):
             item.user_id = user_id
             item.update()
             return default_return(200, 2, item)
-    except treated_errors as e:
-        return default_return(e.status_code, e.message, {"Error": str(e)})
-    except Exception as e:
-        raise e
-
-
-@client_product_bp.route('/<item_id>/pages', methods=['POST', 'GET'])
-@jwt_required()
-def item_pages(item_id):
-    try:
-        if request.method == 'GET':
-            extra_filters = [('product_id', 'eq', item_id)]
-            items, items_paginate = crud_product_page.get_multi(
-                extra_filters=extra_filters,
-                schema=True
-            )
-            return default_return(200, 2, items, items_paginate)
-        if request.method == 'POST':
-            item = crud_product_page.post(
-                extra_fields=[('product_id', item_id)]
-            )
-            return default_return(201, 2, item)
     except treated_errors as e:
         return default_return(e.status_code, e.message, {"Error": str(e)})
     except Exception as e:
