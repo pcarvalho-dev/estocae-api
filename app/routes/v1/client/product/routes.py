@@ -17,9 +17,9 @@ def item_multi_routes():
     try:
         user_id = get_jwt_identity()['user_id']
         if request.method == 'POST':
-            extra_filters = [('user_id', 'eq', user_id)]
+            extra_fields = [('user_id', user_id)]
             item = crud_product.post(schema=True,
-                                     extra_fields=extra_filters)
+                                     extra_fields=extra_fields)
             return default_return(201, 1, item)
         if request.method == 'GET':
             items, items_paginate = crud_product.get_multi(True)
