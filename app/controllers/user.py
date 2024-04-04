@@ -51,7 +51,9 @@ class CRUDUser(CRUDBase):
         if specific_group_id:
             extra_fields.append(("group_id", specific_group_id))
 
-        dict_address = dict_body.pop('address')
+        dict_address = None
+        if 'address' in dict_body:
+            dict_address = dict_body.pop('address')
 
         item = self.post(extra_fields=extra_fields, dict_body=dict_body)
 

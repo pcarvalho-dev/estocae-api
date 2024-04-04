@@ -11,54 +11,8 @@ client_bp = Blueprint('client', __name__, url_prefix="/client")
 
 @client_bp.route('', methods=['POST'])
 def item_multi_routes():
-    """
-    ---
-    post:
-      requestBody:
-        description: Optional description in *Markdown*
-        required: true
-        content:
-          application/json:
-            schema: User
-            examples:
-              for updating client data and password:
-                value:
-                  name: Client Atualizado
-                  email: clientatualizado@email.com
-                  password: mypasswordupdate
-                  taxpayer: '009.847.317-41'
-                  cellphone: '(62) 99897-8888'
-                  birth_date: '2023-01-30'
-                  address:
-                    code_post: '74430-390'
-                    street: 'Rua Paulo Vi'
-                    number: '350'
-                    district: 'Setor Rodoviário'
-                    city_id: 1
-              for updating client data without password:
-                value:
-                  name: Client Update
-                  email: clientupdate@email.com
-                  taxpayer: '413.489.749-15'
-                  cellphone: '(62) 97898-8888'
-                  birth_date: '2023-01-15'
-                  address:
-                    code_post: '74430-390'
-                    street: 'Rua Paulo Vi'
-                    number: '350'
-                    district: 'Setor Rodoviário'
-                    city_id: 1
-      responses:
-        '200':
-          description: call successful
-          content:
-            application/json:
-              schema: UserSchema
-      tags:
-          - Client
-    """
     try:
-        item = crud_user.create_user(schema=True, specific_group_id=5)
+        item = crud_user.create_user(schema=True, specific_group_id=2)
         item['auth'] = generate_user_jwt(item)
         return default_return(201, 1, item)
     except treated_errors as e:
