@@ -22,7 +22,11 @@ def item_multi_routes():
                                      extra_fields=extra_fields)
             return default_return(201, 1, item)
         if request.method == 'GET':
-            items, items_paginate = crud_product.get_multi(True)
+            extra_filters = [('status', 'eq', 'active')]
+            items, items_paginate = crud_product.get_multi(
+                True,
+                extra_filters=extra_filters
+            )
             return default_return(200, 2, items, items_paginate)
     except treated_errors as e:
         return default_return(e.status_code, e.message, {"Error": str(e)})

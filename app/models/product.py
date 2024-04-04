@@ -15,7 +15,7 @@ class Product(db.Model, BaseModel):
     warranty_period = db.Column(db.Integer)
     weight = db.Column(db.Float)
     packing_type = db.Column(db.String(255))
-    status = db.Column(db.String(255), default="active")
+    status = db.Column(db.String(255), default="pending")
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     # Affiliation
