@@ -48,6 +48,8 @@ def code_http(code):
         status = "OK"
     if code == 201:
         status = "Created"
+    if code == 204:
+        status = "No Content"
     if code == 206:
         status = "Partial Content"
     if code == 302:

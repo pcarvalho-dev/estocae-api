@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
 
-from app.controllers import crud_product
+from app.controllers.product import crud_product
 from app.services.errors.default_errors import treated_errors
 from app.services.requests.intercept import intercept_admin_user
 from app.services.requests.requests import default_return

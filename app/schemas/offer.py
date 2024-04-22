@@ -7,7 +7,7 @@ class OfferSchema(BaseSchema):
     name = fields.Str(required=True)
     url = fields.Str()
     price = fields.Float(required=True)
-    is_custom_commission = fields.Bool()
+    custom_commission = fields.Float()
     quantity = fields.Int()
     status = fields.Str()
     product_id = fields.Int()

@@ -16,7 +16,7 @@ class CRUDBase:
                  class_schema_update=None):
         """
         A constructor function that initializes the class.
-        
+
         :param class_model: The model class that will be used to query the database
         :param class_schema: This is the schema that will be used for GET requests
         :param class_schema_create: The schema to use when creating a new object
@@ -38,7 +38,7 @@ class CRUDBase:
              is_dict=None):
         """
         It takes a dictionary, validates it against a schema, and then creates a new object in the database
-        
+
         :param schema: The schema to use to serialize the object
         :param extra_fields: a list of tuples that will be added to the dict_body
         :param dict_body: The dictionary that will be validated
@@ -73,7 +73,7 @@ class CRUDBase:
     def get(self, item_id, schema=None, columns=None):
         """
         It takes an item_id, and returns the item with that id, if it exists
-        
+
         :param item_id: The id of the item to be retrieved
         :param schema: The schema to use to serialize the object
         :param columns: ['id', 'name', 'description']
@@ -98,7 +98,7 @@ class CRUDBase:
     def get_first(self, extra_filters=None, schema=None, columns=None):
         """
         It takes a model, a query, and a dictionary of filters, and returns a query with the filters applied
-        
+
         :param extra_filters: a dictionary of filters to be applied to the query
         :param schema: The schema to use to serialize the data
         :param columns: list of columns to return
@@ -124,7 +124,7 @@ class CRUDBase:
                   active_order=None):
         """
         It gets the data from the database, filters it, paginates it, and returns it
-        
+
         :param schema: The schema to be used to serialize the data
         :param columns: list of columns to be returned
         :param extra_filters: {'id': 1}
@@ -164,7 +164,7 @@ class CRUDBase:
     def get_count_total(self, search=None, extra_filters=None):
         """
         It returns the total number of rows in the table, but only if the row has not been deleted
-        
+
         :param search: is a string that is used to search for a specific record
         :param extra_filters: {'name': 'test'}
         :return: A query object
@@ -188,7 +188,7 @@ class CRUDBase:
     def put(self, item_id, schema=None, dict_body=None, is_dict=None):
         """
         It updates the item in the database.
-        
+
         :param item_id: the id of the item to be updated
         :param schema: The schema to use for validation
         :param dict_body: The dictionary that is passed in from the request
@@ -244,7 +244,7 @@ class CRUDBase:
     def delete(self, item_id, delete_real=None):
         """
         It deletes an item from the database and deletes the associated image and file from S3
-        
+
         :param item_id: The id of the item to delete
         :return: True
         """
@@ -273,7 +273,7 @@ class CRUDBase:
         """
         It takes an id and a slug, gets the item from the database, deletes the old image from S3, uploads
         the new image to S3, updates the database with the new image key, and returns the new image key
-        
+
         :param id: the id of the item
         :param slug: the name of the image
         :return: The data is being returned from the put_image function.
@@ -297,7 +297,7 @@ class CRUDBase:
     def delete_image(self, id):
         """
         It deletes an image from AWS S3 and updates the database
-        
+
         :param id: the id of the item
         :return: The return value is a boolean value.
         """

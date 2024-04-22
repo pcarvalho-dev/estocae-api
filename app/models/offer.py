@@ -8,7 +8,7 @@ class Offer(db.Model, BaseModel):
     name = db.Column(db.String(255), nullable=False)
     url = db.Column(db.String(255))
     price = db.Column(db.Float, nullable=False)
-    is_custom_commission = db.Column(db.Boolean, default=False)
+    custom_commission = db.Column(db.Float)
     quantity = db.Column(db.Integer)
     status = db.Column(db.String(255), default="active")
     product_id = db.Column(db.Integer, db.ForeignKey("product.id"))

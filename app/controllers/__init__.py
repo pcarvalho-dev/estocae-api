@@ -18,7 +18,6 @@ crud_user_code_password = CRUDBase(models.UserCodePassword,
                                    schemas.UserCodePassword,
                                    schemas.UserCodePassword,
                                    schemas.UserCodePassword)
-crud_product = CRUDBase(models.Product, schemas.ProductSchema)
 crud_plan = CRUDBase(models.Plan, schemas.PlanSchema)
 crud_offer = CRUDBase(models.Offer, schemas.OfferSchema)
 crud_coupon = CRUDBase(models.Coupon, schemas.CouponSchema)

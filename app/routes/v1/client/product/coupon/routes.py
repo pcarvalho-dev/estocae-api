@@ -1,7 +1,8 @@
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
 
-from app.controllers import crud_coupon, crud_product
+from app.controllers import crud_coupon
+from app.controllers.product import crud_product
 from app.services.errors.default_errors import treated_errors
 from app.services.errors.exceptions import NotFoundError
 from app.services.requests.requests import default_return
@@ -49,7 +50,7 @@ def item_routes(product_id, item_id):
 
         if request.method == 'DELETE':
             crud_coupon.delete(item_id)
-            return default_return(204, 4)
+            return default_return(204, 4, {})
     except treated_errors as e:
         return default_return(e.status_code, e.message, {"Error": str(e)})
     except Exception as e:

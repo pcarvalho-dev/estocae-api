@@ -1,7 +1,8 @@
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
 
-from app.controllers import crud_product_page, crud_product
+from app.controllers import crud_product_page
+from app.controllers.product import crud_product
 from app.services.errors.default_errors import treated_errors
 from app.services.errors.exceptions import NotFoundError
 from app.services.requests.requests import default_return
