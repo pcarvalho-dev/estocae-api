@@ -1,3 +1,4 @@
+from app import schemas
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
 
@@ -28,7 +29,10 @@ def item_multi_routes(product_id):
 
         if request.method == 'POST':
             extra_fields = [('product_id', product_id)]
-            item = crud_offer.post(schema=True, extra_fields=extra_fields)
+            item = crud_offer.post(extra_fields=extra_fields)
+            item.url = f"/{item.hash_id}"
+            item.update()
+            item = schemas.OfferSchema().dump(item)
             return default_return(201, 1, item)
     except treated_errors as e:
         return default_return(e.status_code, e.message, {"Error": str(e)})
